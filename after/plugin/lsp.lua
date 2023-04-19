@@ -5,7 +5,7 @@ local lsp = require('lsp-zero').preset({
   suggest_lsp_servers = false,
 })
 
-lsp.setup_servers({'tsserver', 'eslint', 'sumneko_lua', 'rust_analyzer'})
+lsp.setup_servers({'eslint', 'tsserver', 'sumneko_lua', 'rust_analyzer'})
 
 lsp.configure('eslint-lsp', {
     autoFixOnSave = true,
@@ -56,11 +56,15 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
     if client.server_capabilities.documentFormattingProvider then
-      -- vim.api.nvim_create_autocmd("BufWritePre", { callback = function() vim.lsp.buf.format() end })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = bufnr,
-        command = "EslintFixAll",
-      })
+        vim.api.nvim_create_autocmd("BufWritePre", { callback = function()
+            vim.lsp.buf.format {
+                filter = function(client) return client.name ~= "tsserver" end
+            }
+        end })
+     -- vim.api.nvim_create_autocmd("BufWritePre", {
+     --   buffer = bufnr,
+     --   command = "LspZeroFormat!",
+     -- })
     end
 end)
 
