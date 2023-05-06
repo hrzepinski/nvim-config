@@ -1,1 +1,1 @@
--- vim.g.NERDTreeHijackNetrw = 0
+vim.g.NERDTreeHijackNetrw = 0
