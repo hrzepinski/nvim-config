@@ -44,19 +44,20 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
-    --if client.server_capabilities.documentFormattingProvider then
-    --vim.api.nvim_create_autocmd("BufWritePre", {
-    --    callback = function()
-    --        vim.lsp.buf.format {
-    --            filter = function(client) return client.name ~= "tsserver" end
-    --        }
-    --    end
-    --})
-    --vim.api.nvim_create_autocmd("BufWritePre", {
-    --    buffer = bufnr,
-    --    command = "EslintFixAll",
-    --})
-    --end
+
+    if client.server_capabilities.documentFormattingProvider then
+        -- vim.api.nvim_create_autocmd("BufWritePre", {
+        --     callback = function()
+        --         vim.lsp.buf.format {
+        --             filter = function(client) return client.name ~= "tsserver" end
+        --         }
+        --     end
+        -- })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+        })
+    end
 end)
 
 lsp.format_on_save({
