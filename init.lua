@@ -18,6 +18,7 @@ require('packer').startup(function(use)
     use 'rstacruz/vim-closer'
     use 'nvim-tree/nvim-tree.lua'
     use 'nvim-tree/nvim-web-devicons'
+    use 'nvim-treesitter/nvim-treesitter-context'
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
