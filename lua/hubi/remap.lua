@@ -24,6 +24,9 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
+vim.keymap.set("v", "_", "g_")
+vim.keymap.set("n", "_", "g_")
+
 vim.keymap.set("n", "[c", function()
     require("treesitter-context").go_to_context()
 end, { silent = true })
