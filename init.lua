@@ -4,6 +4,8 @@ require('packer').startup(function(use)
 
     use 'hrsh7th/nvim-cmp'
 
+    use 'github/copilot.vim'
+
     use 'hrsh7th/cmp-nvim-lsp'
 
     use 'hrsh7th/cmp-nvim-lua'
