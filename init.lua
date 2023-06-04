@@ -37,7 +37,6 @@ require('packer').startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons', opt = false }
     }
 
-    use "EdenEast/nightfox.nvim"
     use 'navarasu/onedark.nvim'
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
