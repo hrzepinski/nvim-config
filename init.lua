@@ -4,6 +4,8 @@ require('packer').startup(function(use)
 
     use 'hrsh7th/nvim-cmp'
 
+    use 'github/copilot.vim'
+
     use 'hrsh7th/cmp-nvim-lsp'
 
     use 'hrsh7th/cmp-nvim-lua'
@@ -17,6 +19,7 @@ require('packer').startup(function(use)
     use 'ThePrimeagen/harpoon'
     use 'rstacruz/vim-closer'
     use 'nvim-treesitter/nvim-treesitter-context'
+    use 'simrat39/symbols-outline.nvim'
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',

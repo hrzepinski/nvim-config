@@ -25,3 +25,6 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "+1"
+
+vim.cmd("set cursorline")
+vim.cmd("set cursorlineopt=number")
