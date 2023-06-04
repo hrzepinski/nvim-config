@@ -19,6 +19,7 @@ require('packer').startup(function(use)
     use 'ThePrimeagen/harpoon'
     use 'rstacruz/vim-closer'
     use 'nvim-treesitter/nvim-treesitter-context'
+    use 'simrat39/symbols-outline.nvim'
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',

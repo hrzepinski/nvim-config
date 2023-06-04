@@ -18,3 +18,5 @@ vim.opt.termguicolors = true
 --         dotfiles = true,
 --     },
 -- })
+
+-- vim.keymap.set("n", "<leader>n", ":NvimTreeFocus<CR>")
