@@ -11,6 +11,9 @@ vim.keymap.set("n", "K", ":m .-2<CR>==")
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
+vim.keymap.set("n", "<", "gT")
+vim.keymap.set("n", ">", "gt")
+
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
