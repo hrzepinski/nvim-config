@@ -68,9 +68,6 @@ lsp.format_on_save({
     servers = {
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
-        -- if you have a working setup with null-ls
-        -- you can specify filetypes it can format.
-        ['tsserver'] = { 'javascript', 'typescript' },
     }
 })
 
