@@ -5,7 +5,7 @@ local lsp = require('lsp-zero').preset({
     suggest_lsp_servers = false,
 })
 
-lsp.setup_servers({ 'eslint', 'tsserver', 'rust_analyzer' })
+--lsp.setup_servers({ 'eslint', 'tsserver', 'rust_analyzer' })
 
 lsp.nvim_workspace()
 
@@ -85,6 +85,10 @@ local cmp = require('cmp')
 --})
 
 cmp.setup({
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "nvim_lsp_signature_help" },
+    },
     mapping = {
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }
