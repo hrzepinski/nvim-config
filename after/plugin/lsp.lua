@@ -31,6 +31,7 @@ lsp.set_preferences({
 
 
 lsp.on_attach(function(client, bufnr)
+    lsp.default_keymaps({ buffer = bufnr })
     local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -53,10 +54,12 @@ lsp.on_attach(function(client, bufnr)
         --         }
         --     end
         -- })
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-        })
+        if client.name == "tsserver" then --
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                buffer = bufnr,
+                command = "EslintFixAll",
+            })
+        end
     end
 end)
 
@@ -66,6 +69,7 @@ lsp.format_on_save({
         timeout_ms = 10000,
     },
     servers = {
+        ['tsserver'] = { 'typescript' },
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
     }
