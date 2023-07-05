@@ -3,6 +3,7 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>w", "<C-W><C-W>")
 
 vim.keymap.set("n", ":W", ":w")
+vim.keymap.set("n", "<S-Y>", "yaw") -- yank word under cursor
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
