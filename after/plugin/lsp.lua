@@ -32,6 +32,7 @@ lsp.set_preferences({
 
 lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
+
     local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -45,22 +46,25 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
-
-    if client.server_capabilities.documentFormattingProvider then
-        -- vim.api.nvim_create_autocmd("BufWritePre", {
-        --     callback = function()
-        --         vim.lsp.buf.format {
-        --             filter = function(client) return client.name ~= "tsserver" end
-        --         }
-        --     end
-        -- })
-        if client.name == "tsserver" then --
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                buffer = bufnr,
-                command = "EslintFixAll",
-            })
-        end
+    if client.supports_method('textDocument/formatting') then
+        require('lsp-format').on_attach(client)
     end
+
+    -- if client.server_capabilities.documentFormattingProvider then
+    -- vim.api.nvim_create_autocmd("BufWritePre", {
+    --     callback = function()
+    --         vim.lsp.buf.format {
+    --             filter = function(client) return client.name ~= "tsserver" end
+    --         }
+    --     end
+    -- })
+    --if client.name == "tsserver" then --
+    --    vim.api.nvim_create_autocmd("BufWritePre", {
+    --        buffer = bufnr,
+    --        command = "EslintFixAll",
+    --    })
+    --end
+    --end
 end)
 
 lsp.format_on_save({
@@ -69,7 +73,7 @@ lsp.format_on_save({
         timeout_ms = 10000,
     },
     servers = {
-        ['tsserver'] = { 'typescript' },
+        ['tsserver'] = { 'typescript', 'typescriptreact' },
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
     }

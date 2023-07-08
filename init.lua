@@ -18,7 +18,6 @@ require('packer').startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use 'ThePrimeagen/harpoon'
     use 'rstacruz/vim-closer'
-    use 'nvim-treesitter/nvim-treesitter-context'
     use 'simrat39/symbols-outline.nvim'
 
     use {
@@ -55,6 +54,7 @@ require('packer').startup(function(use)
             { 'neovim/nvim-lspconfig' },             -- Required
             { 'williamboman/mason.nvim' },           -- Optional
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+            { 'lukas-reineke/lsp-format.nvim' },     -- Optional
 
             -- Autocompletion
             { 'hrsh7th/nvim-cmp' },         -- Required
