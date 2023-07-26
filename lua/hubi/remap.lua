@@ -32,3 +32,6 @@ vim.keymap.set("n", "_", "g_")
 vim.keymap.set("n", "[c", function()
     require("treesitter-context").go_to_context()
 end, { silent = true })
+
+
+vim.keymap.set("n", "<F5>", "!cd %:p:h && npm run test --filter %<CR>")
