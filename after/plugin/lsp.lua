@@ -5,9 +5,6 @@ local lsp = require('lsp-zero').preset({
     suggest_lsp_servers = false,
 })
 
---lsp.setup_servers({ 'eslint', 'tsserver', 'rust_analyzer' })
-
-lsp.nvim_workspace()
 
 vim.diagnostic.config({
     signs = true,
@@ -67,6 +64,22 @@ lsp.on_attach(function(client, bufnr)
     --end
 end)
 
+lsp.extend_cmp()
+
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    -- Replace the language servers listed here
+    -- with the ones you want to install
+    ensure_installed = { 'tsserver', 'rust_analyzer' },
+    handlers = {
+        lsp.default_setup,
+        lua_ls = function()
+            -- (Optional) Configure lua language server for neovim
+            require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+        end,
+    },
+})
+
 lsp.format_on_save({
     format_opts = {
         async = false,
@@ -79,7 +92,7 @@ lsp.format_on_save({
     }
 })
 
-lsp.setup()
+lsp.setup_servers({ 'tsserver', 'rust_analyzer', 'lua_ls' })
 
 local cmp = require('cmp')
 
